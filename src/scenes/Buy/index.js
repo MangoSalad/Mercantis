@@ -25,7 +25,7 @@ class SourceResearcher extends React.Component {
 
   onSearch = (values) => {
     // console.log('[DEBUG] values', values)
-    // var { history } = this.props
+    // var { history } = this.props 
     let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
     let searchResults = [
       {
@@ -45,8 +45,25 @@ class SourceResearcher extends React.Component {
       .then((res) => {
         console.log('[DEBUG] res', res)
         // history.push('/')
+        // this.setState({searchResults: res.data})
         this.setState({searchResults: searchResults})
 
+      })
+      .catch((err) => {
+        console.log('[DEBUG] err', err)
+      })
+    )
+  
+  }
+  onBuy = (values) => {
+    // console.log('[DEBUG] values', values)
+    // var { history } = this.props 
+    let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
+
+    return (
+      axios.post(url, values)
+      .then((res) => {
+        console.log('[DEBUG] res', res)
       })
       .catch((err) => {
         console.log('[DEBUG] err', err)
@@ -70,20 +87,30 @@ class SourceResearcher extends React.Component {
       <MuiThemeProvider>
         <div className='buy-container'>
           <form className='buy-form' onSubmit={handleSubmit(this.onSearch)}>
-            <Field name='search' floatingLabelText='Search Data' component={TextField} fullWidth />
+            <Field name='search' hintText='Enter Id' floatingLabelText='Search Data' component={TextField} fullWidth />
             <RaisedButton label="Search" type="submit" primary={true} fullWidth className='buy-submit-btn'/>
           </form>
 
-          <table className='buy-table'>
-            <tr>
-              <th>ID</th>
-              <th>Price</th> 
-              <th>Description</th>
-            </tr>
-            <tbody>
-              {searchResultRows}
-            </tbody>
-          </table>
+          <form className='buy-form' onSubmit={handleSubmit(this.onBuy)}>
+            <Field name='buy' hintText='Enter Id' floatingLabelText='Buy Data' component={TextField} fullWidth />
+            <RaisedButton label="Buy" type="submit" primary={true} fullWidth className='buy-submit-btn'/>
+          </form>
+
+          {
+            searchResultRows.length > 0
+            && (
+            <table className='buy-table'>
+              <tr>
+                <th>ID</th>
+                <th>Price</th> 
+                <th>Description</th>
+              </tr>
+              <tbody>
+                {searchResultRows}
+              </tbody>
+            </table>
+            )
+          }
         </div>
       </MuiThemeProvider>
     )
