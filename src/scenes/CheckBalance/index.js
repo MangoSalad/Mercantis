@@ -12,6 +12,8 @@ import './styles.css'
 
 
 
+export default CheckBalance
+
 
 // let CheckBalance = ({handleSubmit, history}) => {
 
@@ -19,7 +21,7 @@ class CheckBalance extends React.Component {
 
   constructor(props) {
     super(props)
-    
+
     this.state = {balance: null}
   }
 
@@ -35,14 +37,14 @@ class CheckBalance extends React.Component {
         console.log('[DEBUG] err', err)
       })
     )
-  
+
   }
 
   render() {
 
     return (
       <div className='cb-container'>
-        <div className='cb-content'> 
+        <div className='cb-content'>
           <div> Your balance is: {this.state.balance} </div>
           <h1> 1234 </h1>
         </div>

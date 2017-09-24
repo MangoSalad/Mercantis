@@ -19,13 +19,13 @@ class SourceResearcher extends React.Component {
 
   constructor(props) {
     super(props)
-    
+
     this.state = {searchResults: []}
   }
 
   onSearch = (values) => {
     // console.log('[DEBUG] values', values)
-    // var { history } = this.props 
+    // var { history } = this.props
     let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
     let searchResults = [
       {
@@ -53,13 +53,25 @@ class SourceResearcher extends React.Component {
         console.log('[DEBUG] err', err)
       })
     )
-  
+
   }
   onBuy = (values) => {
     // console.log('[DEBUG] values', values)
-    // var { history } = this.props 
+    // var { history } = this.props
     let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
 
+<<<<<<< HEAD
+        <table className='buy-table'>
+          <tr>
+            <th>ID</th>
+            <th>Price</th>
+            <th>Description</th>
+          </tr>
+          <tbody>
+            {searchResultRows}
+          </tbody>
+        </table>
+=======
     return (
       axios.post(url, values)
       .then((res) => {
@@ -69,8 +81,9 @@ class SourceResearcher extends React.Component {
         console.log('[DEBUG] err', err)
       })
     )
-  
+
   }
+>>>>>>> master
 
   render() {
 
@@ -102,7 +115,7 @@ class SourceResearcher extends React.Component {
             <table className='buy-table'>
               <tr>
                 <th>ID</th>
-                <th>Price</th> 
+                <th>Price</th>
                 <th>Description</th>
               </tr>
               <tbody>
