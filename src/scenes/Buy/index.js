@@ -11,73 +11,87 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import './styles.css'
 
 
-let searchResults = [
-  {
-    id: 'testId',
-    price: 40,
-    description: 'This is a test'
-  },
-  {
-    id: 'testId2',
-    price: 50,
-    description: 'This is a test 2'
+
+
+// let SourceResearcher = ({handleSubmit, history}) => {
+
+class SourceResearcher extends React.Component {
+
+  constructor(props) {
+    super(props)
+    
+    this.state = {searchResults: []}
   }
-]
 
-
-let onSubmit = (history) => (
-  (values) => {
+  onSearch = (values) => {
     // console.log('[DEBUG] values', values)
+    // var { history } = this.props
     let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
+    let searchResults = [
+      {
+        id: 'testId',
+        price: 40,
+        description: 'This is a test'
+      },
+      {
+        id: 'testId2',
+        price: 50,
+        description: 'This is a test 2'
+      }
+    ]
 
-    axios.post(url, values)
-    .then((res) => {
-      console.log('[DEBUG] res', res)
-      history.push('/')
-    })
-    .catch((err) => {
-      console.log('[DEBUG] err', err)
-    })
+    return (
+      axios.post(url, values)
+      .then((res) => {
+        console.log('[DEBUG] res', res)
+        // history.push('/')
+        this.setState({searchResults: searchResults})
+
+      })
+      .catch((err) => {
+        console.log('[DEBUG] err', err)
+      })
+    )
+  
   }
-)
 
-let SourceResearcher = ({handleSubmit, history}) => {
+  render() {
 
- var searchResultRows = searchResults.map((searchResult, i) => (
-            <tr key={i}>
-              <td>{searchResult.id}</td>
-              <td>{searchResult.price}</td>
-              <td>{searchResult.description}</td>
+    var { handleSubmit, history } = this.props
+    var searchResultRows = this.state.searchResults.map((searchResult, i) => (
+      <tr key={i}>
+        <td>{searchResult.id}</td>
+        <td>{searchResult.price}</td>
+        <td>{searchResult.description}</td>
+      </tr>
+    ))
+
+    return (
+      <MuiThemeProvider>
+        <div className='buy-container'>
+          <form className='buy-form' onSubmit={handleSubmit(this.onSearch)}>
+            <Field name='search' floatingLabelText='Search Data' component={TextField} fullWidth />
+            <RaisedButton label="Search" type="submit" primary={true} fullWidth className='buy-submit-btn'/>
+          </form>
+
+          <table className='buy-table'>
+            <tr>
+              <th>ID</th>
+              <th>Price</th> 
+              <th>Description</th>
             </tr>
-  ))
+            <tbody>
+              {searchResultRows}
+            </tbody>
+          </table>
+        </div>
+      </MuiThemeProvider>
+    )
 
-
-
-  return (
-    <MuiThemeProvider>
-      <div className='buy-container'>
-        <form className='buy-form' onSubmit={handleSubmit(onSubmit(history))}>
-          <Field name='search' floatingLabelText='Search Data' component={TextField} fullWidth />
-          <RaisedButton label="Search" type="submit" primary={true} fullWidth className='buy-submit-btn'/>
-        </form>
-
-        <table className='buy-table'>
-          <tr>
-            <th>ID</th>
-            <th>Price</th> 
-            <th>Description</th>
-          </tr>
-          <tbody>
-            {searchResultRows}
-          </tbody>
-        </table>
-
-
-      </div>
-    </MuiThemeProvider>
-  )
+  }
 
 }
+
 
 // Decorate with redux-form
 var ReduxFormHOC = reduxForm({
