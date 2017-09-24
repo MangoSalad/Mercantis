@@ -4,7 +4,11 @@
   height: 100vh;
 }
 
-.sr-content {
+.sr-form {
   width: 50%;
   margin: auto;
+}
+
+.sr-submit-btn {
+  margin-top: 30px;
 }
