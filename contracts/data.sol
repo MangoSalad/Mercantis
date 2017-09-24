@@ -59,5 +59,37 @@ contract data {
         _;
     }
 
+}
+
+contract marketplace is data {
+
+
+    /************************************** 
+        Functions
+    **************************************/
+
+    function buy (uint _id, uint val) returns (uint id_,bytes32 meta_, uint price_, uint data_) {
+        //conditional/require
+        require(coreData[_id]);
+        coreData[_id].owner.transfer(val);
+
+        return(coreData[_id].id,coreData[_id].meta,coreData[_id].price,coreData[_id].data);
+    }
+
+    function query (uint _id) constant returns (uint[] prices_,bytes32[] meta_, uint[] id_) {
+        uint length = coreData[_id].length;
+        uint[] memory prices = new uint[](length);
+        bytes32[] memory meta = new bytes32[](length);
+        uint[] memory id = new uint[](length);
+
+        for (uint i = 0; i<length; i++) {
+            //dataPoint memory cur; //pointer to dataPoint
+            prices[i] = coreData[_id].price;
+            meta[i] = coreData[_id].meta;
+            id[i] = coreData[_id].id;
+        }
+
+        return(prices,meta,id);
+    }
 
 }
