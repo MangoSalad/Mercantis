@@ -146,9 +146,11 @@ contract marketplace is data {
 
     function buy (uint typeID, uint _id, uint val) returns (uint id_,bytes32 meta_, uint price_, uint data_) {
         require(coreData[typeID][_id].id>0);
-        coreData[typeID][_id].owner.transfer(val);
+        coreData[typeID][_id].owner.transfer((val * 9) / 10 ); //send 90% to researcher
+        coreData[typeID][_id].participant.transfer((val * 1) / 10 ); //send 10% to participant
 
         return(coreData[typeID][_id].id,coreData[typeID][_id].meta,coreData[typeID][_id].price,coreData[typeID][_id].data);
     }
 
 }
+
