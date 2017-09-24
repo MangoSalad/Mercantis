@@ -40,19 +40,19 @@ contract mapper {
     **************************************/
 
     //add participants to the participants mapping
-    function addParticipants(address _addy, uint _dob, bool _gender, uint _location, uint _race) public {
-        participants[_addy] = demographicsData(_dob, _gender, _location, _race);
-    }
+    // function addParticipants(address _addy, uint _dob, bool _gender, uint _location, uint _race) public {
+    //     participants[_addy] = demographicsData(_dob, _gender, _location, _race);
+    // }
 
-    //add researcher to the researcher mapping
-    function addResearcher(address _addy, uint _institution) public {
-        researchers[_addy] = researcher(_institution);
-    }
+    // //add researcher to the researcher mapping
+    // function addResearcher(address _addy, uint _institution) public {
+    //     researchers[_addy] = researcher(_institution);
+    // }
 
-    //add buyer to the buyer mapping
-    function addBuyer(address _addy, uint _institution) public {
-        researchers[_addy] = researcher(_institution);
-    }
+    // //add buyer to the buyer mapping
+    // function addBuyer(address _addy, uint _institution) public {
+    //     researchers[_addy] = researcher(_institution);
+    // }
 
 }
 
@@ -68,7 +68,6 @@ contract data is mapper {
     **************************************/
 
     mapping (uint => mapping(uint => dataPoint)) public coreData;
-    mapping (address => user) userData;
 
     uint dataPointIter = 1; //iterator pointer for dataPoint     
 
