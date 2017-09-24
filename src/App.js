@@ -8,6 +8,7 @@ import {
   Redirect,
   Link
 } from 'react-router-dom'
+import Home from './scenes/Home'
 import SourceResearcher from './scenes/SourceResearcher'
 import logo from './logo.svg';
 import './App.css';
@@ -19,7 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path='/source-researcher' component={SourceResearcher} />
-            <Route path='/' render={() => <div> nasl </div>} />
+            <Route path='/' component={Home} />
           </Switch>
         </Router>
       </Provider>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -10,23 +11,26 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import './styles.css'
 
 
-let onSubmit = (values) => {
-  // console.log('[DEBUG] values', values)
-  let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
+let onSubmit = (history) => (
+  (values) => {
+    // console.log('[DEBUG] values', values)
+    let url = "https://jsonplaceholder.typicode.com/posts" // TODO: Put localhost link to Ethereum blockchain
 
-  axios.post(url, values)
-  .then((res) => {
-    console.log('[DEBUG] res', res)
-  })
-  .catch((err) => {
-    console.log('[DEBUG] err', err)
-  })
-}
+    axios.post(url, values)
+    .then((res) => {
+      console.log('[DEBUG] res', res)
+      history.push('/')
+    })
+    .catch((err) => {
+      console.log('[DEBUG] err', err)
+    })
+  }
+)
 
-let SourceResearcher = ({handleSubmit}) => (
+let SourceResearcher = ({handleSubmit, history}) => (
   <MuiThemeProvider>
     <div className='sr-container'>
-      <form className='sr-form' onSubmit={handleSubmit(onSubmit)}>
+      <form className='sr-form' onSubmit={handleSubmit(onSubmit(history))}>
         <Field name='user' floatingLabelText='User Address' component={TextField} fullWidth />
         <Field name='dataId' floatingLabelText='Data ID' component={TextField} fullWidth />
         <Field name='price' floatingLabelText='Price' component={TextField} fullWidth />
@@ -37,10 +41,6 @@ let SourceResearcher = ({handleSubmit}) => (
     </div>
   </MuiThemeProvider>
 )
-
-// class SourceResearcher extends React.Component {
-
-//   render
 
 // }
 
@@ -54,5 +54,5 @@ var ReduxFormHOC = reduxForm({
 })(SourceResearcher)
 
 
-export default connect()(ReduxFormHOC)
+export default connect()(withRouter(ReduxFormHOC))
 // export default SourceResearcher
