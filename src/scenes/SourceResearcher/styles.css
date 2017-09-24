@@ -1,0 +1,10 @@
+.sr-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sr-content {
+  width: 50%;
+  margin: auto;
+}
