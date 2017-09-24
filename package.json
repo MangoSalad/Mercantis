@@ -16,7 +16,8 @@
     "redux-thunk": "^2.2.0"
   },
   "dependencies": {
-    "react": "^15.6.1"
+    "react": "^15.6.1",
+    "web3": "^0.18.4"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -44,6 +44,8 @@ let onSubmit = (history) => (
 let SourceResearcher = ({handleSubmit, history}) => {
 
  var searchResultRows = searchResults.map((searchResult, i) => (
+
+
             <tr key={i}>
               <td>{searchResult.id}</td>
               <td>{searchResult.price}</td>
@@ -64,7 +66,7 @@ let SourceResearcher = ({handleSubmit, history}) => {
         <table className='buy-table'>
           <tr>
             <th>ID</th>
-            <th>Price</th> 
+            <th>Price</th>
             <th>Description</th>
           </tr>
           <tbody>
