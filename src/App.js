@@ -10,7 +10,8 @@ import {
   Link
 } from 'react-router-dom'
 import NavBar from './components/NavBar'
-import Home from './scenes/Home'
+import Buy from './scenes/Buy'
+import CheckBalancePage from './scenes/CheckBalance'
 import SourceResearcher from './scenes/SourceResearcher'
 import logo from './logo.svg';
 import './App.css';
@@ -27,7 +28,8 @@ class App extends Component {
             <NavBar />
             <Switch>
               <Route path='/source-researcher' component={SourceResearcher} />
-              <Route path='/' component={Home} />
+              <Route path='/buy' component={Buy} />
+              <Route path='/' component={CheckBalancePage} />
             </Switch>
           </div>
         </Router>
